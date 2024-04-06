@@ -12,6 +12,16 @@ class Recipe(models.Model):
         ('hard', 'Hard'),
     )
     difficulty_level = models.CharField(max_length=10, choices=difficulty_level_choices)
+    pic = models.ImageField(upload_to='recipes', default='no_image.jpg')
+
+    category_choices = (
+        ('breakfast', 'Breakfast'),
+        ('lunch', 'Lunch'),
+        ('dinner', 'Dinner'),
+        ('snack', 'Snack'),
+        ('dessert', 'Dessert'),
+    )
+    category = models.CharField(max_length=10, choices=category_choices, default='lunch')
 
     
     def __str__(self):
