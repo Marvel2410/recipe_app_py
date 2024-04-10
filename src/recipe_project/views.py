@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm    
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 #define a function view called login_view that takes a request from user
@@ -25,3 +25,7 @@ def login_view(request):
        'error_message': error_message                     
    }
    return render(request, 'auth/login.html', context)
+
+def logout_view(request):                                  
+  logout(request)          
+  return redirect('login') 

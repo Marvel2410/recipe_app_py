@@ -17,13 +17,11 @@
     <h1>Recipe Roundup</h1>
     <p class="description">Explore our delicious recipes and start cooking!</p>
     <div class="banner">
-      <a href="/">Home</a>
       <a href="#">Search</a>
       <a href="{% url 'recipes:recipes_list' %}">Recipes List</a>
       <a href="#">Subscribe</a>
-      <a href="#">Log In</a>
-      <input type="text" placeholder="Filter">
-      <button>Filter</button>
+      <a href="{% url 'login' %}">Log In</a>
+      <a href="{% url 'logout' %}">Log Out</a>
     </div>
   </div>
   <div class="container1">
