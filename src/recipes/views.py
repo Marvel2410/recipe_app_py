@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Recipe
+
 
 def home(request):
     return render(request, 'recipes/recipes_home.html')
@@ -11,5 +12,6 @@ def recipe_details(request, recipe_id):
 def recipes_list(request):
     recipes = Recipe.objects.all()
     return render(request, 'recipes/recipes_list.html', {'recipes': recipes})
+
 
 
