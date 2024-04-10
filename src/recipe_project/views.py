@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm    
 from django.contrib.auth import authenticate, login
 
+
 #define a function view called login_view that takes a request from user
 def login_view(request):                               
    error_message = None                              
@@ -15,7 +16,7 @@ def login_view(request):
            user=authenticate(username=username, password=password)
            if user is not None:                  
                login(request, user)                
-               return redirect('sales:records') 
+               return redirect('recipes:recipes_list') 
        else:                                               
            error_message ='ooops.. something went wrong'   
 
