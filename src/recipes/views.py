@@ -39,13 +39,11 @@ def recipe_search(request):
         ingredient = form.cleaned_data.get('ingredient')
         difficulty_level = form.cleaned_data.get('difficulty_level')
         category = form.cleaned_data.get('category')
+        show_all = form.cleaned_data.get('show_all')
 
-        # Filter recipes if at least one search criterion is provided
+        # Only filter recipes if at least one search criterion is provided
         if name or ingredient or difficulty_level or category:
-            # Start with all recipes
             recipes = Recipe.objects.all()
-            
-            # Apply filters one by one
             if name:
                 recipes = recipes.filter(name__icontains=name)
             if ingredient:
@@ -54,6 +52,8 @@ def recipe_search(request):
                 recipes = recipes.filter(difficulty_level=difficulty_level)
             if category:
                 recipes = recipes.filter(category=category)
+        elif show_all:
+            recipes = Recipe.objects.all()
 
     context = {
         'form': form,
@@ -61,4 +61,3 @@ def recipe_search(request):
     }
 
     return render(request, 'recipes/recipe_search.html', context)
-
