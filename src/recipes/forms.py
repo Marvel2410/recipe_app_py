@@ -21,4 +21,5 @@ class RecipeSearchForm(forms.Form):
     ingredient = forms.CharField(required=False, label='Ingredient')
     difficulty_level = forms.ChoiceField(choices=DIFFICULTY_LEVEL_CHOICES, required=False, label='Difficulty Level')
     category = forms.ChoiceField(choices=CATEGORY_CHOICES, required=False, label='Category')
+    show_all = forms.BooleanField(required=False)
     

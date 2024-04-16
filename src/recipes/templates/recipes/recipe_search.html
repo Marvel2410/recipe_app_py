@@ -17,10 +17,6 @@
     <button type="submit">Search</button>
   </form>
 
-  <form method="get" action="{% url 'recipes:recipe_search' %}">
-    <input type="hidden" name="show_all" value="true">
-    <button type="submit">Show All</button>
-  </form>
 
   {% if recipes %}
   <h2>Search Results</h2>
