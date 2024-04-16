@@ -15,7 +15,11 @@
   <form method="get">
     {{ form.as_p }}
     <button type="submit">Search</button>
-    <a href="{% url 'recipes:recipe_search' %}?show_all=true"><button type="button">Show All</button></a>
+  </form>
+
+  <form method="get" action="{% url 'recipes:recipe_search' %}">
+    <input type="hidden" name="show_all" value="true">
+    <button type="submit">Show All</button>
   </form>
 
   {% if recipes %}

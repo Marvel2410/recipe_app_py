@@ -29,10 +29,9 @@ class RecipeDetailView(LoginRequiredMixin, DetailView):
     model = Recipe                                   
     template_name = 'recipes/recipe_details.html' 
 
-
 def recipe_search(request):
     form = RecipeSearchForm(request.GET)
-    recipes = []
+    recipes = Recipe.objects.all()
 
     if form.is_valid():
         name = form.cleaned_data.get('name')
@@ -41,9 +40,7 @@ def recipe_search(request):
         category = form.cleaned_data.get('category')
         show_all = form.cleaned_data.get('show_all')
 
-        # Only filter recipes if at least one search criterion is provided
-        if name or ingredient or difficulty_level or category:
-            recipes = Recipe.objects.all()
+        if not show_all:
             if name:
                 recipes = recipes.filter(name__icontains=name)
             if ingredient:
@@ -52,8 +49,6 @@ def recipe_search(request):
                 recipes = recipes.filter(difficulty_level=difficulty_level)
             if category:
                 recipes = recipes.filter(category=category)
-        elif show_all:
-            recipes = Recipe.objects.all()
 
     context = {
         'form': form,
@@ -61,3 +56,4 @@ def recipe_search(request):
     }
 
     return render(request, 'recipes/recipe_search.html', context)
+
