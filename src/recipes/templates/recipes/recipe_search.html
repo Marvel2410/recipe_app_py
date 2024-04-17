@@ -17,6 +17,13 @@
     <button type="submit">Search</button>
   </form>
 
+  {% if chart %}
+  <div>
+    <img src="data:image/png;base64,{{ chart }}" alt="Chart">
+  </div>
+  {% endif %}
+
+
 
   {% if recipes %}
   <h2>Search Results</h2>

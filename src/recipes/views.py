@@ -3,8 +3,11 @@ from .models import Recipe
 from django.views.generic import ListView, DetailView   
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from .forms import RecipeSearchForm
+from .forms import RecipeSearchForm, CATEGORY_CHOICES
 import pandas as pd
+from .utils import get_chart
+
+
 
 
 
@@ -39,6 +42,7 @@ def recipe_search(request):
         difficulty_level = form.cleaned_data.get('difficulty_level')
         category = form.cleaned_data.get('category')
         show_all = form.cleaned_data.get('show_all')
+        chart_type = form.cleaned_data.get('chart_type')
 
         # Only filter recipes if at least one search criterion is provided
         if name or ingredient or difficulty_level or category:
@@ -54,9 +58,22 @@ def recipe_search(request):
         elif show_all:  # This block is executed when the "Show All" button is clicked
             recipes = Recipe.objects.all()
 
+        chart_data = {
+            'name': [recipe.name for recipe in recipes],
+            'difficulty_level_choices': [recipe.difficulty_level for recipe in recipes],
+            'category_choices': [recipe.category for recipe in recipes],
+            'cooking_time': [recipe.cooking_time for recipe in recipes]
+        }
+
+        chart = get_chart(chart_type, chart_data, category_choices=CATEGORY_CHOICES)
+    else:
+        chart = None
+
     context = {
         'form': form,
-        'recipes': recipes
+        'recipes': recipes,
+        'chart': chart  # Add chart to the context
     }
 
     return render(request, 'recipes/recipe_search.html', context)
+
