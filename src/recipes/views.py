@@ -1,3 +1,5 @@
+
+
 from django.shortcuts import render, redirect
 from .models import Recipe
 from django.views.generic import ListView, DetailView   
@@ -6,9 +8,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import RecipeSearchForm, CATEGORY_CHOICES
 import pandas as pd
 from .utils import get_chart
-
-
-
 
 
 def home(request):
@@ -76,4 +75,3 @@ def recipe_search(request):
     }
 
     return render(request, 'recipes/recipe_search.html', context)
-
