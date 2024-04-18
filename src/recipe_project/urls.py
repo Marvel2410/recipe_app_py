@@ -22,7 +22,8 @@ from .views import login_view, logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('recipes.urls')),
+    path('', login_view, name='login'),  # Move the login view to the empty path
+    path('recipes/', include('recipes.urls')),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
 ]
