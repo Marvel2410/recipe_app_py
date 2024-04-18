@@ -1,22 +1,38 @@
-<h1>Login</h1> {% comment %} print heading {% endcomment %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% comment %} check for error message {% endcomment %}
-{% if error_message %}
-{{error_message}}
-{% endif %}
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'recipes/styles/login.css' %}">
+</head>
 
-{% comment %} print form {% endcomment %}
-<form action="" method="POST">
-  {% comment %} add Django security token {% endcomment %}
-  {% csrf_token %}
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <h1>Welcome to Recipe Roundup!</h1>
+      <h2> Please sign in.</h2>
+      <br>
+      <br>
+      {% if error_message %}
+      <p class="error-message">{{ error_message }}</p>
+      {% endif %}
 
-  {% comment %} print form received from view {% endcomment %}
-  {{form}}
+      <form action="" method="POST" class="login-form">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Login</button>
+      </form>
 
-  {% comment %} add button {% endcomment %}
-  <button type="submit">Login</button>
-</form>
 
-{% if user.is_authenticated %}
-<a href="{% url 'logout' %}">Logout</a>
-{% endif %}
+      {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}">Logout</a>
+      {% endif %}
+    </div>
+  </div>
+</body>
+
+</html>
