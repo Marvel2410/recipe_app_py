@@ -1,0 +1,67 @@
+/* General styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-image: url('../images/kitchen.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0; /* Remove default body margin */
+  padding: 0; /* Remove default body padding */
+}
+
+/* Navbar styles */
+.navbar {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+/* Search container styles */
+.search-container {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space items evenly */
+  margin: 20px; /* Add some margin for spacing */
+}
+
+/* Search form styles */
+.search-form {
+  flex: 1;
+  margin-right: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  max-width: 500px;
+  position: relative; /* Position the chart relative to the form */
+}
+
+.search-form h2 {
+  margin-top: 0; /* Remove default margin */
+}
+
+
+.chart {
+  position: absolute; /* Position the chart absolutely */
+  top: 320px; /* Adjust the distance from the top */
+  left: 0px; /* Adjust the distance from the left */
+  max-width: 500px;
+  height: auto;
+  margin-top: 20px;
+
+}
+
+
+.search-results {
+  max-width: 800px; /* Adjust the maximum width as needed */
+  height: auto; /* Maintain aspect ratio */
+
+}
+
+
+

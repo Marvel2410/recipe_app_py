@@ -1,5 +1,4 @@
-<!-- recipes/recipe_search.html -->
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,47 +6,65 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search Recipes</title>
+  <title>Recipe List</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'recipes/styles/search.css' %}">
+
 </head>
 
 <body>
-  <h1>Search Recipes</h1>
-  <form method="get">
-    {{ form.as_p }}
-    <button type="submit">Search</button>
-  </form>
-
-  {% if chart %}
-  <div>
-    <img src="data:image/png;base64,{{ chart }}" alt="Chart">
+  <div class="navbar">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a href="{% url 'recipes:recipe_search' %}">Search</a>
+    <a href="{% url 'recipes:recipes_list' %}">Recipes List</a>
+    <a href="#">Subscribe</a>
+    <a href="{% url 'logout' %}">Log Out</a>
+    <!-- Add more links as needed -->
   </div>
-  {% endif %}
 
+  <div class="search-container">
+    <div class="search-form">
+      <h2>Search Recipes</h2>
+      <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+        <br>
+        <br>
+      </form>
+      {% if chart %}
 
+      <img class="chart" src="data:image/png;base64,{{ chart }}" alt="Chart">
 
-  {% if recipes %}
-  <h2>Search Results</h2>
-  <table border="1">
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Cooking Time</th>
-      <th>Ingredients</th>
-      <th>Difficulty Level</th>
-      <th>Category</th>
-    </tr>
-    {% for recipe in recipes %}
-    <tr>
-      <td>{{ recipe.name }}</td>
-      <td>{{ recipe.description }}</td>
-      <td>{{ recipe.cooking_time }}</td>
-      <td>{{ recipe.ingredients }}</td>
-      <td>{{ recipe.difficulty_level }}</td>
-      <td>{{ recipe.category }}</td>
-    </tr>
-    {% endfor %}
-  </table>
-  {% endif %}
+      {% endif %}
+    </div>
+
+    <div class="search-results">
+      {% if recipes %}
+      <h2>Search Results</h2>
+      <table border="1">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Cooking Time</th>
+          <th>Ingredients</th>
+          <th>Difficulty Level</th>
+          <th>Category</th>
+        </tr>
+        {% for recipe in recipes %}
+        <tr>
+          <td>{{ recipe.name }}</td>
+          <td>{{ recipe.description }}</td>
+          <td>{{ recipe.cooking_time }}</td>
+          <td>{{ recipe.ingredients }}</td>
+          <td>{{ recipe.difficulty_level }}</td>
+          <td>{{ recipe.category }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% endif %}
+    </div>
+  </div>
 </body>
 
 </html>

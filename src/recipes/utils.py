@@ -45,7 +45,7 @@ def get_chart(chart_type, data, **kwargs):
     elif chart_type == '#2':
         labels = data['category_choices']
         category_counts = {category: data['category_choices'].count(category) for category in labels}
-        plt.figure(figsize=(8, 8))  # Set the figure size
+        plt.figure(figsize=(10, 6))  # Set the figure size
         plt.pie(category_counts.values(), labels=category_counts.keys(), autopct='%1.1f%%')
         plt.title('Percentage of Recipes by Category')  # Add a title
     elif chart_type == '#3':
