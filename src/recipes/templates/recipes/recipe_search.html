@@ -29,13 +29,13 @@
       <form method="get">
         {{ form.as_p }}
         <button type="submit">Search</button>
+        <button type="button" onclick="clearFields()">Clear all fields</button>
         <br>
         <br>
       </form>
       {% if chart %}
-
-      <img class="chart" src="data:image/png;base64,{{ chart }}" alt="Chart">
-
+      <a href="#modal-chart" class="chart-link" title="Click to enlarge"><img class="chart"
+          src="data:image/png;base64,{{ chart }}" alt="Chart"></a>
       {% endif %}
     </div>
 
@@ -65,6 +65,52 @@
       {% endif %}
     </div>
   </div>
+
+  <div id="modal-chart" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img src="data:image/png;base64,{{ chart }}" alt="Chart">
+    </div>
+  </div>
+
+  <script>
+    // Get the modal
+    var modal = document.getElementById('modal-chart');
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // Get the chart link
+    var chartLink = document.querySelector('.chart-link');
+
+    // When the user clicks the image or link, open the modal 
+    chartLink.onclick = function () {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+  <script>
+    function clearFields() {
+      document.getElementById("id_name").value = "";
+      document.getElementById("id_ingredient").value = "";
+      document.getElementById("id_difficulty_level").selectedIndex = 0;
+      document.getElementById("id_category").selectedIndex = 0;
+      document.getElementById("id_show_all").checked = false;
+    }
+  </script>
+
+
 </body>
 
 </html>
