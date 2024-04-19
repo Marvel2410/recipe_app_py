@@ -9,6 +9,11 @@ body {
   padding: 0; /* Remove default body padding */
 }
 
+.results-title{
+  color:#c5c0c0;
+  font-weight: bold;
+}
+
 /* Navbar styles */
 .navbar {
   background-color: #333;
